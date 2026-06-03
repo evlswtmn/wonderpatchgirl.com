@@ -384,16 +384,81 @@
 
         /* ─── RESPONSIVE ─── */
         @media (max-width: 640px) {
-            .hero-content { padding: 40px 16px 20px; }
-            .coming-soon-banner { font-size: 0.9rem; padding: 8px 20px; }
-            .character-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .character-card { padding: 16px 8px; }
-            .character-card img { width: 80px; height: 80px; }
-            .character-card.featured { transform: scale(1); }
-            .school { width: 200px; height: 110px; bottom: 34%; }
-            .school::before { top: -28px; border-left-width: 36px; border-right-width: 36px; border-bottom-width: 28px; }
-            .newsletter-form { flex-direction: column; }
-            .town-silhouette { display: none; }
+            .sky {
+                min-height: 0;
+            }
+            .hero-content {
+                padding: 24px 16px 12px;
+                min-height: 0;
+            }
+            .coming-soon-banner {
+                font-size: 0.75rem;
+                padding: 6px 16px;
+                letter-spacing: 4px;
+                margin-bottom: 8px;
+            }
+            .title {
+                font-size: 2.2rem;
+                margin-bottom: 4px;
+            }
+            .tagline {
+                font-size: 0.95rem;
+                margin-bottom: 4px;
+            }
+            .tagline-sub {
+                font-size: 0.85rem;
+                margin-bottom: 12px;
+            }
+            .characters-section {
+                padding: 20px 16px 30px;
+            }
+            .characters-section h2 {
+                font-size: 1.4rem;
+                margin-bottom: 20px;
+            }
+            .character-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .character-card {
+                padding: 12px 6px 14px;
+            }
+            .character-card img {
+                width: 80px;
+                height: 80px;
+            }
+            .character-card h3 {
+                font-size: 1rem;
+            }
+            .character-card.featured {
+                transform: scale(1);
+            }
+            .school {
+                width: 160px;
+                height: 90px;
+                bottom: 0;
+            }
+            .school::before {
+                top: -20px;
+                border-left-width: 28px;
+                border-right-width: 28px;
+                border-bottom-width: 20px;
+            }
+            .newsletter {
+                padding: 0 16px 40px;
+            }
+            .newsletter h3 {
+                font-size: 1.1rem;
+            }
+            .newsletter-form {
+                flex-direction: column;
+            }
+            .town-silhouette {
+                display: none;
+            }
+            .ground {
+                height: 30%;
+            }
         }
     </style>
 </head>
