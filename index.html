@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wonderpatch Girl — Coming Soon</title>
+    <meta name="description" content="Wonderpatch Girl: a hero who earns her powers by doing good. A new webcomic coming to Dover, DE.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --warm-yellow: #fbbf24;
+            --sky-blue: #60a5fa;
+            --hero-pink: #f472b6;
+            --patch-green: #4ade80;
+            --deep-blue: #1e3a5f;
+            --brick: #b45309;
+            --cream: #fef9e7;
+            --text-dark: #1f2937;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ─── SKY / TOWN BACKGROUND ─── */
+        .sky {
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(180deg,
+                #fde68a 0%,
+                #fbbf24 15%,
+                #fb923c 30%,
+                #f97316 65%,
+                #1e3a5f 66%,
+                #1a2d4a 100%
+            );
+            overflow: hidden;
+        }
+
+        /* Clouds */
+        .cloud {
+            position: absolute;
+            background: rgba(255,255,255,0.7);
+            border-radius: 50px;
+            animation: drift linear infinite;
+        }
+        .cloud:nth-child(1) {
+            width: 180px; height: 50px;
+            top: 5%; left: -200px;
+            animation-duration: 50s;
+        }
+        .cloud:nth-child(2) {
+            width: 240px; height: 60px;
+            top: 10%; left: -240px;
+            animation-duration: 65s;
+            animation-delay: -20s;
+        }
+        .cloud:nth-child(3) {
+            width: 140px; height: 40px;
+            top: 18%; left: -140px;
+            animation-duration: 40s;
+            animation-delay: -35s;
+        }
+        @keyframes drift {
+            from { transform: translateX(-300px); }
+            to { transform: translateX(calc(100vw + 300px)); }
+        }
+
+        /* Town silhouette */
+        .town-silhouette {
+            position: absolute;
+            bottom: 34%;
+            left: 0;
+            right: 0;
+            height: 200px;
+            display: flex;
+            align-items: flex-end;
+            gap: 0;
+        }
+        .building {
+            background: #1a1a2e;
+            border-radius: 4px 4px 0 0;
+            flex-shrink: 0;
+            position: relative;
+        }
+        .building::after {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 4px;
+            background: rgba(251, 191, 36, 0.3);
+            border-radius: 2px;
+            box-shadow:
+                0 0 0 0 transparent,
+                12px 30px 0 -2px rgba(251, 191, 36, 0.15),
+                -14px 30px 0 -2px rgba(251, 191, 36, 0.15),
+                0 60px 0 -2px rgba(251, 191, 36, 0.15),
+                18px 60px 0 -2px rgba(251, 191, 36, 0.15),
+                -16px 60px 0 -2px rgba(251, 191, 36, 0.15);
+        }
+
+        .town-silhouette .b1 { width: 40px; height: 100px; }
+        .town-silhouette .b2 { width: 55px; height: 140px; }
+        .town-silhouette .b3 { width: 80px; height: 180px; }
+        .town-silhouette .b4 { width: 35px; height: 90px; }
+        .town-silhouette .b5 { width: 70px; height: 160px; }
+        .town-silhouette .b6 { width: 90px; height: 120px; }
+        .town-silhouette .b7 { width: 45px; height: 110px; }
+        .town-silhouette .b8 { width: 60px; height: 150px; }
+        .town-silhouette .b9 { width: 100px; height: 170px; }
+        .town-silhouette .b10 { width: 50px; height: 130px; }
+        .town-silhouette .b11 { width: 40px; height: 95px; }
+
+        /* School silhouette (larger building) */
+        .school {
+            position: absolute;
+            bottom: 34%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 160px;
+            background: #1f1f3a;
+            border-radius: 6px 6px 0 0;
+        }
+        .school::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 40px solid #2a2a4a;
+        }
+        .school::after {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 60px;
+            background: #2a2a4a;
+            border-radius: 4px 4px 0 0;
+            box-shadow:
+                0 -15px 0 -2px rgba(251, 191, 36, 0.15),
+                0 -35px 0 -2px rgba(251, 191, 36, 0.1);
+        }
+
+        /* ─── HERO CONTENT ─── */
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 60px 24px 40px;
+            min-height: 100vh;
+        }
+
+        /* Coming Soon banner */
+        .coming-soon-banner {
+            display: inline-block;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: #fff;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 10px 32px;
+            border-radius: 4px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.4);
+            margin-bottom: 16px;
+            transform: rotate(-2deg);
+        }
+
+        /* Title */
+        .title {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2.8rem, 10vw, 5.5rem);
+            color: #fff;
+            text-shadow:
+                0 2px 10px rgba(0,0,0,0.3),
+                0 0 40px rgba(251, 191, 36, 0.3);
+            text-align: center;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+        .title .highlight {
+            color: var(--warm-yellow);
+        }
+
+        .tagline {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            color: rgba(255,255,255,0.9);
+            text-align: center;
+            max-width: 560px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .tagline-sub {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        /* ─── CHARACTER CARDS ─── */
+        .characters-section {
+            position: relative;
+            z-index: 10;
+            padding: 60px 24px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .characters-section h2 {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: 2rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .character-card {
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(8px);
+            border-radius: 16px;
+            padding: 24px 16px 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .character-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+
+        .character-card img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            background: rgba(255,255,255,0.1);
+            padding: 4px;
+        }
+
+        .character-card h3 {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .character-card .role {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+            font-weight: 500;
+        }
+
+        /* Star highlight for featured character */
+        .character-card.featured {
+            background: rgba(251, 191, 36, 0.2);
+            border-color: var(--warm-yellow);
+            transform: scale(1.05);
+        }
+        .character-card.featured:hover {
+            transform: scale(1.05) translateY(-6px);
+        }
+
+        /* ─── GROUND / GRASS ─── */
+        .ground {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 34%;
+            background: linear-gradient(180deg,
+                #2d5a1e 0%,
+                #1b3a12 40%,
+                #0f230a 100%
+            );
+            border-top: 3px solid #3a7a28;
+        }
+
+        /* ─── NEWSLETTER ─── */
+        .newsletter {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 24px 80px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .newsletter h3 {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .newsletter p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 8px;
+            max-width: 420px;
+            margin: 0 auto;
+        }
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            font-size: 0.95rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .newsletter-form input::placeholder { color: rgba(255,255,255,0.4); }
+        .newsletter-form input:focus { border-color: var(--warm-yellow); }
+        .newsletter-form button {
+            padding: 12px 24px;
+            background: var(--warm-yellow);
+            color: var(--deep-blue);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            font-family: inherit;
+            white-space: nowrap;
+        }
+        .newsletter-form button:hover {
+            background: #f59e0b;
+            transform: scale(1.04);
+        }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 24px;
+            color: rgba(255,255,255,0.4);
+            font-size: 0.8rem;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 640px) {
+            .hero-content { padding: 40px 16px 20px; }
+            .coming-soon-banner { font-size: 0.9rem; padding: 8px 20px; }
+            .character-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .character-card { padding: 16px 8px; }
+            .character-card img { width: 80px; height: 80px; }
+            .character-card.featured { transform: scale(1); }
+            .school { width: 200px; height: 110px; bottom: 34%; }
+            .school::before { top: -28px; border-left-width: 36px; border-right-width: 36px; border-bottom-width: 28px; }
+            .newsletter-form { flex-direction: column; }
+            .town-silhouette { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="sky">
+        <!-- Clouds -->
+        <div class="cloud"></div>
+        <div class="cloud"></div>
+        <div class="cloud"></div>
+
+        <!-- Ground / grass -->
+        <div class="ground"></div>
+
+        <!-- Town silhouettes -->
+        <div class="town-silhouette">
+            <div class="building b1"></div>
+            <div class="building b2"></div>
+            <div class="building b3"></div>
+            <div class="building b4"></div>
+            <div class="building b5"></div>
+            <div class="building b6"></div>
+            <div class="building b7"></div>
+            <div class="building b8"></div>
+            <div class="building b9"></div>
+            <div class="building b10"></div>
+            <div class="building b11"></div>
+        </div>
+
+        <!-- School -->
+        <div class="school"></div>
+
+        <!-- Hero Section -->
+        <div class="hero-content">
+            <div class="coming-soon-banner">✦ Coming Soon ✦</div>
+            <h1 class="title">Wonderpatch<br><span class="highlight">Girl</span></h1>
+            <p class="tagline">A hero who earns her powers by doing good.</p>
+            <p class="tagline-sub">Coming to Dover, DE — and beyond!</p>
+        </div>
+
+        <!-- Characters -->
+        <div class="characters-section">
+            <h2>Meet the Heroes</h2>
+            <div class="character-grid">
+                <div class="character-card featured">
+                    <img src="assets/images/wonderpatch-girl.jpg" alt="Wonderpatch Girl" loading="lazy">
+                    <h3>Wonderpatch Girl</h3>
+                    <p class="role">⭐ The Hero — earns patches through good deeds</p>
+                </div>
+                <div class="character-card">
+                    <img src="assets/images/tiko.jpg" alt="Tiko the Talking Patchbook" loading="lazy">
+                    <h3>Tiko</h3>
+                    <p class="role">📖 The Talking Patchbook — guide & helper</p>
+                </div>
+                <div class="character-card">
+                    <img src="assets/images/uncle-wei.jpg" alt="Uncle Wei" loading="lazy">
+                    <h3>Uncle Wei</h3>
+                    <p class="role">🦸 Mentor & protector</p>
+                </div>
+                <div class="character-card">
+                    <img src="assets/images/abuela.jpg" alt="Abuela" loading="lazy">
+                    <h3>Abuela</h3>
+                    <p class="role">👵 Wisdom & warmth</p>
+                </div>
+                <div class="character-card">
+                    <img src="assets/images/young-girl.jpg" alt="Young Girl" loading="lazy">
+                    <h3>Maya</h3>
+                    <p class="role">👧 Best friend & sidekick</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="newsletter">
+            <h3>Be the first to know</h3>
+            <p>Get updates when the first strip drops, plus exclusive behind-the-scenes looks.</p>
+            <form class="newsletter-form" action="#" method="post">
+                <input type="email" placeholder="your email" required>
+                <button type="submit">Notify Me</button>
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2026 Wonderpatch Girl — a Meta Directories production</p>
+            <p>Part of the DoverGo community</p>
+        </div>
+    </div>
+</body>
+</html>
