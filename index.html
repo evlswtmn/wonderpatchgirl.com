@@ -387,9 +387,11 @@
         @media (max-width: 640px) {
             .sky {
                 min-height: 0;
+                display: flex;
+                flex-direction: column;
                 background: linear-gradient(180deg,
                     #1e3a5f 0%,
-                    #1a2d4a 40%,
+                    #1a2d4a 30%,
                     #1b3a12 100%
                 );
             }
@@ -399,100 +401,99 @@
             }
 
             .hero-content {
-                flex-direction: row;
-                flex-wrap: wrap;
-                align-items: baseline;
-                justify-content: center;
-                padding: 8px 10px 2px;
+                order: 2;
+                flex-direction: column;
+                align-items: center;
+                padding: 4px 10px 6px;
                 min-height: 0;
-                gap: 0;
             }
             .coming-soon-banner {
                 font-size: 0.55rem;
                 padding: 3px 10px;
                 letter-spacing: 2px;
-                margin-bottom: 0;
+                margin-bottom: 2px;
                 transform: rotate(-1deg);
             }
             .title {
-                font-size: 1.3rem;
-                margin-bottom: 0;
-                margin-left: 6px;
-                display: inline;
+                font-size: 1.4rem;
+                margin-bottom: 2px;
             }
             .title br { display: none; }
             .title .highlight { display: inline; }
             .tagline {
                 font-size: 0.7rem;
                 margin-bottom: 0;
-                width: 100%;
                 text-align: center;
-                margin-top: 2px;
             }
             .tagline-sub {
                 display: none;
             }
 
             .characters-section {
-                padding: 4px 10px 10px;
+                order: 1;
+                padding: 6px 10px 4px;
             }
             .characters-section h2 {
-                font-size: 0.75rem;
-                margin-bottom: 6px;
-                opacity: 0.7;
+                font-size: 0.7rem;
+                margin-bottom: 4px;
+                opacity: 0.6;
             }
             .character-grid {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 6px;
+                gap: 5px;
             }
             .character-card {
-                padding: 6px 2px 8px;
+                padding: 4px 2px 6px;
                 border-radius: 8px;
-                background: rgba(255,255,255,0.08);
+                background: rgba(255,255,255,0.06);
+                border-color: rgba(255,255,255,0.08);
             }
             .character-card img {
-                width: 55px;
-                height: 55px;
-                margin-bottom: 6px;
+                width: 50px;
+                height: 50px;
+                margin-bottom: 4px;
             }
             .character-card h3 {
-                font-size: 0.7rem;
+                font-size: 0.65rem;
             }
             .character-card .role {
-                font-size: 0.55rem;
-                line-height: 1.2;
+                font-size: 0.5rem;
+                line-height: 1.1;
             }
             .character-card.featured {
                 transform: scale(1);
-                background: rgba(251, 191, 36, 0.12);
+                background: rgba(251, 191, 36, 0.1);
+                border-color: rgba(251, 191, 36, 0.2);
             }
 
             .newsletter {
-                padding: 0 16px 24px;
+                order: 3;
+                padding: 0 16px 20px;
             }
             .newsletter h3 {
-                font-size: 0.9rem;
-                margin-bottom: 4px;
+                font-size: 0.85rem;
+                margin-bottom: 2px;
             }
             .newsletter p {
-                font-size: 0.75rem;
-                margin-bottom: 10px;
+                font-size: 0.7rem;
+                margin-bottom: 8px;
             }
             .newsletter-form {
                 flex-direction: column;
             }
             .newsletter-form input {
                 padding: 8px 12px;
-                font-size: 0.8rem;
+                font-size: 0.75rem;
             }
             .newsletter-form button {
                 padding: 8px 18px;
-                font-size: 0.8rem;
+                font-size: 0.75rem;
             }
 
             .footer {
-                padding: 16px;
-                font-size: 0.65rem;
+                order: 4;
+                padding: 12px;
+                font-size: 0.6rem;
             }
         }
     </style>
